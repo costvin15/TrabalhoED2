@@ -6,19 +6,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
 	public static void main(String[] args) {
+		String path = getInputFromStdin("Caminho do arquivo:");
+		String sort = getInputFromStdin("Algoritmo de ordenação:");
+
 		List<Edge> edges;
 		//O arquivo deve conter as arestas em csv onde cada linha do cs representa: source,weigth,target
-		edges = readCsvFile("Digite aqui o camniho do Arquivo");
-		
+		edges = readCsvFile(path);
+
 		Graph graph = new Graph(edges);
-		List<Edge> mst= graph.Kruskal();
+		List<Edge> mst= graph.Kruskal(sort);
 
 		for(Edge e : mst) {
-			System.out.println(e.v+" ,"+e.peso+","+e.w);			
+			System.out.println(e.v+" ,"+e.peso+","+e.w);
 		}
+	}
+
+	public static String getInputFromStdin(String message) {
+		System.out.println(message);
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
 	}
 	
 	public static List<Edge> readCsvFile(String path) {

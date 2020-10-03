@@ -14,10 +14,9 @@ public class Graph {
 	
 	// use E.set(5,(edge)) para adicionar no quinto espao do vetor
 	// use E.get(5) para saber o valor do quinto espao do vetor
-	public List<Edge> ordenate(List<Edge> arestas) {
-		Collections.shuffle(arestas);
-		while(!isSorted(arestas)) {
-			Collections.shuffle(arestas);		
+	public List<Edge> ordenate(List<Edge> arestas, String sort) {
+		if (sort.equals("quicksort")) {
+			Sort.quicksort(arestas, 0, arestas.size() - 1);
 		}
 
 		return arestas;
@@ -33,10 +32,10 @@ public class Graph {
 		return true;
 	}
 	
-	public List<Edge> Kruskal() {
+	public List<Edge> Kruskal(String sort) {
 		List<List<Integer>> floresta = createFloresta();
 		List<Edge> mst = new ArrayList<Edge>(); 
-		List<Edge> arestas = this.ordenate(this.E);
+		List<Edge> arestas = this.ordenate(this.E, sort);
 		
 		while(!arestas.isEmpty()) {
 			Edge aux = arestas.remove(0);

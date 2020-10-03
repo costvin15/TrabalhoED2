@@ -15,4 +15,8 @@ repositories {
 
 dependencies {}
 
+run {
+    standardInput = System.in
+}
+
 mainClassName = 'kruskal.App'

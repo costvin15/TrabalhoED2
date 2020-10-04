@@ -19,6 +19,8 @@ public class Graph {
 			Sort.quicksort(arestas);
 		} else if (sort.equals("mergesort")) {
 			Sort.mergesort(arestas);
+		} else if (sort.equals("insertsort")) {
+			Sort.insertsort(arestas);
 		} else {
 			throw new RuntimeException("Algoritmo nao reconhecido");
 		}

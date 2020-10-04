@@ -16,7 +16,17 @@ public class Graph {
 	// use E.get(5) para saber o valor do quinto espao do vetor
 	public List<Edge> ordenate(List<Edge> arestas, String sort) {
 		if (sort.equals("quicksort")) {
-			Sort.quicksort(arestas, 0, arestas.size() - 1);
+			Sort.quicksort(arestas);
+		} else if (sort.equals("mergesort")) {
+			Sort.mergesort(arestas);
+		} else if (sort.equals("insertsort")) {
+			Sort.insertsort(arestas);
+		} else if (sort.equals("shellsort")) {
+			Sort.shellsort(arestas);
+		} else if (sort.equals("heapsort")) {
+			Sort.heapsort(arestas);
+		} else {
+			throw new RuntimeException("Algoritmo nao reconhecido");
 		}
 
 		return arestas;

@@ -21,6 +21,8 @@ public class Graph {
 			Sort.mergesort(arestas);
 		} else if (sort.equals("insertsort")) {
 			Sort.insertsort(arestas);
+		} else if (sort.equals("shellsort")) {
+			Sort.shellsort(arestas);
 		} else {
 			throw new RuntimeException("Algoritmo nao reconhecido");
 		}

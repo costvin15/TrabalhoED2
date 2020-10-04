@@ -102,4 +102,29 @@ public class Sort {
             vector.set(j + 1, temp);
         }
     }
+
+    public static <E extends Comparable<E>> void shellsort(List<E> vector) {
+        int i, j, h;
+        E aux;
+
+        for (h = 1; h < vector.size(); h = 3 * h + 1);
+
+        while (h > 0) {
+            h = (h - 1) / 3;
+            for (i = h; i < vector.size(); i++) {
+                aux = vector.get(i);
+                j = i;
+
+                while (vector.get(j - h).compareTo(aux) > 0) {
+                    vector.set(j, vector.get(j - h));
+                    j -= h;
+                    if (j < h) {
+                        break;
+                    }
+                }
+
+                vector.set(j, aux);
+            }
+        }
+    }
 }

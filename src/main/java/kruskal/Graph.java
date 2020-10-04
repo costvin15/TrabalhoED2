@@ -3,6 +3,7 @@ package kruskal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Graph {
 	List<Vertex> V;
@@ -25,6 +26,20 @@ public class Graph {
 			Sort.shellsort(arestas);
 		} else if (sort.equals("heapsort")) {
 			Sort.heapsort(arestas);
+		} else if (sort.equals("quicksortmod1")) {
+			System.out.println("Insira o tamanho da particao: ");
+			Scanner scanner = new Scanner(System.in);
+			String input = scanner.nextLine();
+			int l = Integer.valueOf(input);
+
+			Sort.quicksortmod1(arestas, l);
+		} else if (sort.equals("quicksortmod2")) {
+			System.out.println("Insira o tamanho da particao: ");
+			Scanner scanner = new Scanner(System.in);
+			String input = scanner.nextLine();
+			int l = Integer.valueOf(input);
+
+			Sort.quicksortmod2(arestas, l);
 		} else {
 			throw new RuntimeException("Algoritmo nao reconhecido");
 		}

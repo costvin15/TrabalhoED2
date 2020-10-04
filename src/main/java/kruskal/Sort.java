@@ -87,14 +87,18 @@ public class Sort {
     }
 
     public static <E extends Comparable<E>> void insertsort(List<E> vector) {
+        insertsort_main(vector, 0, vector.size());
+    }
+
+    private static <E extends Comparable<E>> void insertsort_main(List<E> vector, int left, int right) {
         int i, j;
         E temp;
 
-        for (i = 1; i < vector.size(); i++) {
+        for (i = left + 1; i < right; i++) {
             temp = vector.get(i);
             j = i - 1;
 
-            while (j >= 0 && vector.get(j).compareTo(temp) > 0) {
+            while (j >= left && vector.get(j).compareTo(temp) > 0) {
                 vector.set(j + 1, vector.get(j));
                 j--;
             }
@@ -165,6 +169,34 @@ public class Sort {
             vector.set(largest, aux);
 
             heapify(vector, size, largest);
+        }
+    }
+
+    public static <E extends Comparable<E>> void quicksortmod1(List<E> vector, int l) {
+        quicksortmod1_main(vector, 0, vector.size() - 1, l);
+    }
+
+    private static <E extends Comparable<E>> void quicksortmod1_main(List<E> vector, int left, int right, int l) {
+        if (right - left + 1 <= l) {
+            insertsort_main(vector, left, right + 1);
+        } else if (left < right) {
+            int pivot = quicksort_split(vector, left, right);
+            quicksortmod1_main(vector, left, pivot - 1, l);
+            quicksortmod1_main(vector, pivot + 1, right, l);
+        }
+    }
+
+    public static <E extends Comparable<E>> void quicksortmod2(List<E> vector, int l) {
+        quicksortmod2_main(vector, 0, vector.size() - 1, l);
+    }
+
+    private static <E extends Comparable<E>> void quicksortmod2_main(List<E> vector, int left, int right, int l) {
+        if (left > right && right - left + 1 > l) {
+            int pivot = quicksort_split(vector, left, right);
+            quicksortmod1_main(vector, left, pivot - 1, l);
+            quicksortmod1_main(vector, pivot + 1, right, l);
+        } else {
+            insertsort_main(vector, left, right + 1);
         }
     }
 }

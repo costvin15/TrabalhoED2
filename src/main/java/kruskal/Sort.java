@@ -8,7 +8,7 @@ public class Sort {
         quicksort_main(vector, 0, vector.size() - 1);
     }
 
-    public static <E extends Comparable<E>> void quicksort_main(List<E> vector, int left, int right) {
+    private static <E extends Comparable<E>> void quicksort_main(List<E> vector, int left, int right) {
         if (left < right) {
             int pivot = quicksort_split(vector, left, right);
             quicksort_main(vector, left, pivot - 1);
@@ -83,6 +83,23 @@ public class Sort {
 
         for (i = left; i <= right; i++) {
             vector.set(i, temp.get(i - left));
+        }
+    }
+
+    public static <E extends Comparable<E>> void insertsort(List<E> vector) {
+        int i, j;
+        E temp;
+
+        for (i = 1; i < vector.size(); i++) {
+            temp = vector.get(i);
+            j = i - 1;
+
+            while (j >= 0 && vector.get(j).compareTo(temp) > 0) {
+                vector.set(j + 1, vector.get(j));
+                j--;
+            }
+
+            vector.set(j + 1, temp);
         }
     }
 }

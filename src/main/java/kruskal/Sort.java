@@ -127,4 +127,44 @@ public class Sort {
             }
         }
     }
+
+    public static <E extends Comparable<E>> void heapsort(List<E> vector) {
+        int i;
+        E aux;
+
+        for (i = vector.size() / 2 - 1; i >= 0; i--) {
+            heapify(vector, vector.size(), i);
+        }
+
+        for (i = vector.size() - 1; i >= 0; i--) {
+            aux = vector.get(0);
+            vector.set(0, vector.get(i));
+            vector.set(i, aux);
+
+            heapify(vector, i, 0);
+        }
+    }
+
+    private static <E extends Comparable<E>> void heapify(List<E> vector, int size, int i) {
+        int largest = i;
+        int leftchild = 2 * i + 1;
+        int rightchild = 2 * i + 2;
+        E aux;
+
+        if (leftchild < size && vector.get(leftchild).compareTo(vector.get(largest)) > 0){
+            largest = leftchild;
+        }
+
+        if (rightchild < size && vector.get(rightchild).compareTo(vector.get(largest)) > 0) {
+            largest = rightchild;
+        }
+
+        if (largest != i) {
+            aux = vector.get(i);
+            vector.set(i, vector.get(largest));
+            vector.set(largest, aux);
+
+            heapify(vector, size, largest);
+        }
+    }
 }

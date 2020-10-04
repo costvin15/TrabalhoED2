@@ -23,6 +23,8 @@ public class Graph {
 			Sort.insertsort(arestas);
 		} else if (sort.equals("shellsort")) {
 			Sort.shellsort(arestas);
+		} else if (sort.equals("heapsort")) {
+			Sort.heapsort(arestas);
 		} else {
 			throw new RuntimeException("Algoritmo nao reconhecido");
 		}
